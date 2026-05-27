@@ -74,3 +74,119 @@ lib/
 │
 ├── main.dart
 ```
+
+## Arquitetura Modular
+
+A arquitetura modular foi adotada para evitar:
+
+- acoplamento excessivo;
+- código duplicado;
+- arquivos gigantes;
+- responsabilidades misturadas.
+  Cada módulo possui responsabilidade própria, facilitando:
+- testes;
+- manutenção;
+- escalabilidade;
+- reutilização de componentes.
+
+## Design System
+
+O projeto utiliza um Design System próprio para padronização visual da aplicação.
+
+Isso inclui:
+
+- paleta de cores;
+- escala tipográfica;
+- espaçamentos;
+- pesos de fonte;
+- componentes reutilizáveis;
+- estilos globais.
+
+## Benefícios
+
+- consistência visual;
+- manutenção simplificada;
+- código mais limpo;
+- redução de “magic numbers”;
+- facilidade de evolução visual do app.
+
+## Componentização
+
+Todo elemento reutilizável da interface será transformado em componente.
+
+Exemplos:
+
+- botões;
+- campos de input;
+- loaders;
+- cards;
+- barras de progresso;
+- títulos;
+- widgets matemáticos.
+
+Isso reduz:
+
+- repetição;
+- inconsistência visual;
+- complexidade do código.
+
+## Persistência de Dados
+
+O aplicativo utilizará banco de dados local para armazenar:
+
+- cálculos realizados;
+- histórico do usuário;
+- operações recentes;
+- preferências da aplicação.
+
+Os dados ficarão armazenados localmente no dispositivo do usuário, permitindo:
+
+- acesso rápido;
+- funcionamento offline;
+- melhor experiência de uso.
+
+## Objetivos Técnicos
+
+O projeto também tem como foco aprofundar conhecimentos em:
+
+- Flutter Architecture
+- Clean Code
+- UI/UX
+- Navegação entre telas
+- Gerenciamento de estado
+- Persistência local
+- Componentização
+- Escalabilidade frontend
+- Estruturação de Design Systems
+
+## Objetivos Acadêmicos
+
+- Aplicar conceitos matemáticos em aplicações reais;
+- Criar ferramentas de apoio educacional;
+- Relacionar lógica computacional e lógica matemática;
+- Desenvolver soluções voltadas ao ambiente universitário.
+
+## Status do Projeto
+
+🚧 Em desenvolvimento
+Atualmente sendo desenvolvidos:
+
+- Splash Screen
+- Estrutura arquitetural
+- Design System
+- Navegação inicial
+  -Componentes reutilizáveis
+
+## Autor
+
+André Lins
+Ícaro Araujo
+Micael Studart
+Paulo Queiroz
+Ronaldo
+
+Alunos do Curso de Sistemas de Informação — UNI7
+
+## Licença
+
+Projeto acadêmico desenvolvido para fins educacionais.

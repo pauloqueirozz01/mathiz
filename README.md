@@ -1,17 +1,76 @@
-# mathiz
+# Mathiz — Educação & Lógica
 
-A new Flutter project.
+Aplicação mobile desenvolvida em Flutter com foco acadêmico para auxiliar estudantes nas disciplinas de **Matemática Aplicada** e **Lógica Matemática**, componentes curriculares do curso de **Sistemas de Informação | UNI7**.
 
-## Getting Started
+O projeto busca unir:
 
-This project is a starting point for a Flutter application.
+- organização arquitetural;
+- experiência visual moderna;
+- componentização;
+- reaproveitamento de código;
+- performance;
+- e aprendizado prático de desenvolvimento mobile.
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+# Objetivo do Projeto
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+O **Mathiz** foi criado como um ambiente de apoio acadêmico voltado para:
+
+- resolução de cálculos;
+- estudos de lógica;
+- organização matemática;
+- experimentação visual;
+- e reforço dos conceitos aprendidos em sala de aula.
+
+Além da proposta educacional, o projeto também serve como laboratório prático de:
+
+- Flutter;
+- Dart;
+- arquitetura frontend;
+- design system;
+- componentização;
+- e organização de aplicações escaláveis.
+
+---
+
+# Tecnologias Utilizadas
+
+- Flutter
+- Dart
+- Material Design 3
+- Local Storage
+- Design System próprio
+- Arquitetura Modular
+
+---
+
+# Estrutura Arquitetural
+
+O projeto utiliza uma abordagem modular para manter:
+
+- escalabilidade;
+- separação de responsabilidades;
+- manutenção simplificada;
+- e maior reaproveitamento de código.
+
+## Estrutura Base
+
+```text
+lib/
+├── core/
+│   ├── constants/
+│   ├── theme/
+│   ├── widgets/
+│
+├── screens/
+│   ├── splash/
+│   ├── home/
+│   ├── calculator/
+│
+├── services/
+├── models/
+├── repositories/
+│
+├── main.dart
+```

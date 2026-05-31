@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app_colors.dart';
 import 'app_typography.dart';
-import '../constants/app_sizes.dart';
 
 class AppTextStyles {
   static const TextStyle headlineXL = TextStyle(
@@ -26,7 +24,7 @@ class AppTextStyles {
 
   static const TextStyle labelMono = TextStyle(
     fontFamily: 'JetBrains Mono',
-    fontSize: 13,
-    fontWeight: FontWeight.w500,
+    fontSize: AppTypography.label,
+    fontWeight: AppTypography.regular,
   );
 }

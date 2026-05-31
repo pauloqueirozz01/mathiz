@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:mathiz/core/navigation/app_routes.dart';
 import 'core/theme/app_theme.dart';
+
+import 'package:mathiz/screens/home/home_screen.dart';
 import 'screens/splash/splash_screen.dart';
 
 void main() {
@@ -21,6 +23,13 @@ class MathizApp extends StatelessWidget {
 
       // Tema global
       theme: AppTheme.lightTheme,
+
+      initialRoute: AppRoutes.splash,
+
+      routes: {
+        AppRoutes.splash: (_) => const SplashScreen(),
+        AppRoutes.home: (_) => const HomeScreen(),
+      },
 
       // Primeira tela do app
       home: const SplashScreen(),

@@ -171,19 +171,19 @@ O projeto também tem como foco aprofundar conhecimentos em:
 🚧 Em desenvolvimento
 Atualmente sendo desenvolvidos:
 
-- Splash Screen
-- Estrutura arquitetural
-- Design System
-- Navegação inicial
-  -Componentes reutilizáveis
+- Splash Screen,
+- Estrutura arquitetural,
+- Design System,
+- Navegação inicial,
+  -Componentes reutilizáveis.
 
 ## Autor
 
-André Lins
-Ícaro Araujo
-Micael Studart
-Paulo Queiroz
-Ronaldo
+- André Lins,
+- Ícaro Araujo,
+- Micael Studart,
+- Paulo Queiroz,
+- Ronaldo,
 
 Alunos do Curso de Sistemas de Informação — UNI7
 

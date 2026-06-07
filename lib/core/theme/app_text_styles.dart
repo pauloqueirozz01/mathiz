@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mathiz/core/theme/app_colors.dart';
 
 import 'app_typography.dart';
 
@@ -8,6 +9,7 @@ class AppTextStyles {
     fontSize: AppTypography.headlineXL,
     height: AppTypography.lineHeightTight,
     letterSpacing: AppTypography.trackingTight,
+    fontWeight: AppTypography.semiBold,
   );
 
   static const TextStyle headlineLG = TextStyle(

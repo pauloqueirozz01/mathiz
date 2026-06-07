@@ -1,0 +1,8 @@
+class MatrixService {
+  static List<List<int>> sum(List<List<int>> a, List<List<int>> b) {
+    return [
+      [a[0][0] + b[0][0], a[0][1] + b[0][1]],
+      [a[1][0] + b[1][0], a[1][1] + b[1][1]],
+    ];
+  }
+}

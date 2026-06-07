@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mathiz/core/navigation/app_routes.dart';
+import 'package:mathiz/screens/history/history_screen.dart';
+import 'package:mathiz/screens/logic/logic_screen.dart';
+import 'package:mathiz/screens/matrix/matrix_screen.dart';
 import 'core/theme/app_theme.dart';
 
 import 'package:mathiz/screens/home/home_screen.dart';
@@ -29,6 +32,9 @@ class MathizApp extends StatelessWidget {
       routes: {
         AppRoutes.splash: (_) => const SplashScreen(),
         AppRoutes.home: (_) => const HomeScreen(),
+        AppRoutes.matrix: (_) => const MatrixScreen(),
+        AppRoutes.logic: (_) => const LogicScreen(),
+        AppRoutes.history: (_) => const HistoryScreen(),
       },
 
       // Primeira tela do app

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mathiz/core/theme/app_colors.dart';
 import 'package:mathiz/core/theme/app_text_styles.dart';
+import 'package:mathiz/screens/matrix/widgets/matrix_Configuration_Card.dart';
 
 class MatrixScreen extends StatefulWidget {
   const MatrixScreen({super.key});
@@ -17,8 +18,8 @@ class _MatrixScreenState extends State<MatrixScreen> {
   List<List<double>> matrixB = [];
   void generateMatrices() {
     setState(() {
-      matrixA = List.generate(rows, (_) => List.filled(cols, 0));
-      matrixB = List.generate(cols, (_) => List.filled(cols, 0));
+      matrixA = List.generate(cols, (_) => List.filled(cols, 0));
+      matrixB = List.generate(rows, (_) => List.filled(cols, 0));
     });
   }
 
@@ -41,7 +42,19 @@ class _MatrixScreenState extends State<MatrixScreen> {
 
             const SizedBox(height: 24),
 
-            _buildConfigurationCard(),
+            MatrixConfigurationCard(
+              rows: rows,
+              cols: cols,
+              selectedOperation: selectedOperation,
+
+              onResize: generateMatrices,
+
+              onOperationChanged: (operation) {
+                setState(() {
+                  selectedOperation = operation;
+                });
+              },
+            ),
 
             const SizedBox(height: 24),
 
@@ -50,47 +63,6 @@ class _MatrixScreenState extends State<MatrixScreen> {
             const SizedBox(height: 24),
 
             _buildActionButtons(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildConfigurationCard() {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          children: [
-            const Text("Dimensões das Matrizes"),
-            const SizedBox(height: 16),
-
-            Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    style: AppTextStyles.bodyMD,
-                    initialValue: rows.toString(),
-                    decoration: const InputDecoration(
-                      labelText: "Linhas",
-                      labelStyle: AppTextStyles.labelMono,
-                    ),
-                  ),
-                ),
-
-                const SizedBox(width: 15),
-
-                Expanded(
-                  child: TextFormField(
-                    initialValue: cols.toString(),
-                    decoration: const InputDecoration(labelText: "Colunas"),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 24),
-
-            _buildSelectorOperation(),
           ],
         ),
       ),

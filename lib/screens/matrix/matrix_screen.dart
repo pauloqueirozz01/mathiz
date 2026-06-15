@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mathiz/core/theme/app_colors.dart';
 import 'package:mathiz/core/theme/app_text_styles.dart';
 import 'package:mathiz/screens/matrix/widgets/matrix_Configuration_Card.dart';
+import 'package:mathiz/screens/matrix/widgets/matrix_grid_widget.dart';
 
 class MatrixScreen extends StatefulWidget {
   const MatrixScreen({super.key});
@@ -18,7 +19,7 @@ class _MatrixScreenState extends State<MatrixScreen> {
   List<List<double>> matrixB = [];
   void generateMatrices() {
     setState(() {
-      matrixA = List.generate(cols, (_) => List.filled(cols, 0));
+      matrixA = List.generate(rows, (_) => List.filled(cols, 0));
       matrixB = List.generate(rows, (_) => List.filled(cols, 0));
     });
   }
@@ -115,13 +116,14 @@ class _MatrixScreenState extends State<MatrixScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
       children: [
-        Column(
-          children: [
-            const Text("A"),
-            const SizedBox(height: 16),
+        MatrixGridWidget(
+          matrix: matrixA,
 
-            Container(width: 120, height: 120, color: AppColors.secondary),
-          ],
+          onValueChanged: (row, col, value) {
+            setState(() {
+              matrixA[row][col] = value;
+            });
+          },
         ),
         Icon(
           selectedOperation == "Soma"
@@ -131,13 +133,14 @@ class _MatrixScreenState extends State<MatrixScreen> {
               : Icons.close,
         ),
 
-        Column(
-          children: [
-            const Text("B"),
-            const SizedBox(height: 16),
+        MatrixGridWidget(
+          matrix: matrixA,
 
-            Container(width: 120, height: 120, color: AppColors.secondary),
-          ],
+          onValueChanged: (row, col, value) {
+            setState(() {
+              matrixA[row][col] = value;
+            });
+          },
         ),
       ],
     );

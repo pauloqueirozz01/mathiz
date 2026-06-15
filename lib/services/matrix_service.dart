@@ -1,8 +1,55 @@
 class MatrixService {
-  static List<List<int>> sum(List<List<int>> a, List<List<int>> b) {
-    return [
-      [a[0][0] + b[0][0], a[0][1] + b[0][1]],
-      [a[1][0] + b[1][0], a[1][1] + b[1][1]],
-    ];
+  static List<List<double>> sum(
+    List<List<double>> matrixA,
+    List<List<double>> matrixB,
+  ) {
+    int rows = matrixA.length;
+    int cols = matrixA[0].length;
+
+    return List.generate(
+      rows,
+      (row) =>
+          List.generate(cols, (col) => matrixA[row][col] + matrixB[row][col]),
+    );
   }
+
+  static List<List<double>> subtract(
+    List<List<double>> matrixA,
+    List<List<double>> matrixB,
+  ) {
+    int rows = matrixA.length;
+    int cols = matrixA[0].length;
+
+    return List.generate(
+      rows,
+      (row) =>
+          List.generate(cols, (col) => matrixA[row][col] - matrixB[row][col]),
+    );
+  }
+
+  static List<List<double>> multiply(
+    List<List<double>> matrixA,
+    List<List<double>> matrixB,
+  ) {
+    int rowsA = matrixA.length;
+    int colsA = matrixA[0].length;
+    int colsB = matrixB[0].length;
+
+    List<List<double>> result = List.generate(
+      rowsA,
+      (_) => List.filled(colsB, 0),
+    );
+
+    for (int i = 0; i < rowsA; i++) {
+      for (int j = 0; i < colsB; j++) {
+        for (int k = 0; k < colsA; k++) {
+          result[i][j] += matrixA[i][k] * matrixB[k][j];
+        }
+      }
+    }
+
+    return result;
+  }
+
+  void calculateResult() {}
 }

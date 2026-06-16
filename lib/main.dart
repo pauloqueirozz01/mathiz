@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
 import 'package:mathiz/core/navigation/app_routes.dart';
 import 'package:mathiz/screens/history/history_screen.dart';
 import 'package:mathiz/screens/logic/logic_screen.dart';
 import 'package:mathiz/screens/matrix/matrix_screen.dart';
-import 'core/theme/app_theme.dart';
-
 import 'package:mathiz/screens/home/home_screen.dart';
+
+import 'core/theme/app_theme.dart';
 import 'screens/splash/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+
+  await Hive.openBox("history");
+
   runApp(const MathizApp());
 }
 
@@ -38,7 +48,6 @@ class MathizApp extends StatelessWidget {
       },
 
       // Primeira tela do app
-      home: const SplashScreen(),
     );
   }
 }

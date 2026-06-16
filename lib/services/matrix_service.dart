@@ -41,7 +41,7 @@ class MatrixService {
     );
 
     for (int i = 0; i < rowsA; i++) {
-      for (int j = 0; i < colsB; j++) {
+      for (int j = 0; j < colsB; j++) {
         for (int k = 0; k < colsA; k++) {
           result[i][j] += matrixA[i][k] * matrixB[k][j];
         }
@@ -51,5 +51,20 @@ class MatrixService {
     return result;
   }
 
-  void calculateResult() {}
+  //Metodo para validar operação
+  static bool canAddOrSubtract(
+    List<List<double>> matrixA,
+    List<List<double>> matrixB,
+  ) {
+    return matrixA.length == matrixB.length &&
+        matrixA[0].length == matrixB[0].length;
+  }
+
+  // Metodo criado para validação de multiplicação
+  static bool canMultiply(
+    List<List<double>> matrixA,
+    List<List<double>> matrixB,
+  ) {
+    return matrixA[0].length == matrixB.length;
+  }
 }

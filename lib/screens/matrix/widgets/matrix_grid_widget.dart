@@ -5,34 +5,58 @@ class MatrixGridWidget extends StatelessWidget {
 
   final void Function(int row, int col, double value) onValueChanged;
 
+  /// Define se os campos podem ser editados
+  final bool readOnly;
+
   const MatrixGridWidget({
     super.key,
     required this.matrix,
     required this.onValueChanged,
+    this.readOnly = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    // Evita erro caso a matriz ainda não tenha sido gerada
+    if (matrix.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     return Column(
       children: List.generate(matrix.length, (rowIndex) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
-
           children: List.generate(matrix[rowIndex].length, (colIndex) {
             return Container(
               width: 60,
               margin: const EdgeInsets.all(4),
 
               child: TextFormField(
+                key: ValueKey(
+                  "${rowIndex}_${colIndex}_${matrix[rowIndex][colIndex]}",
+                ),
+
                 initialValue: matrix[rowIndex][colIndex].toString(),
-                keyboardType: TextInputType.number,
+
+                readOnly: readOnly,
+
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+
                 textAlign: TextAlign.center,
-                onChanged: (value) => {
+
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(vertical: 12),
+                  border: OutlineInputBorder(),
+                ),
+
+                onChanged: (value) {
                   onValueChanged(
                     rowIndex,
                     colIndex,
                     double.tryParse(value) ?? 0,
-                  ),
+                  );
                 },
               ),
             );

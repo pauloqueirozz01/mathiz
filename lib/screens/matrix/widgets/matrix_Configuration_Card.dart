@@ -11,6 +11,9 @@ class MatrixConfigurationCard extends StatelessWidget {
 
   final Function(String) onOperationChanged;
 
+  final Function(int) onRowsChanged;
+  final Function(int) onColsChanged;
+
   const MatrixConfigurationCard({
     super.key,
     required this.rows,
@@ -18,6 +21,8 @@ class MatrixConfigurationCard extends StatelessWidget {
     required this.onResize,
     required this.selectedOperation,
     required this.onOperationChanged,
+    required this.onRowsChanged,
+    required this.onColsChanged,
   });
 
   @override
@@ -35,8 +40,11 @@ class MatrixConfigurationCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextFormField(
-                    style: AppTextStyles.bodyMD,
                     initialValue: rows.toString(),
+
+                    onChanged: (value) {
+                      onRowsChanged(int.tryParse(value) ?? 3);
+                    },
                     decoration: const InputDecoration(
                       labelText: "Linhas",
                       labelStyle: AppTextStyles.labelMono,
@@ -49,6 +57,9 @@ class MatrixConfigurationCard extends StatelessWidget {
                 Expanded(
                   child: TextFormField(
                     initialValue: cols.toString(),
+                    onChanged: (value) {
+                      onColsChanged(int.tryParse(value) ?? 3);
+                    },
                     decoration: const InputDecoration(labelText: "Colunas"),
                   ),
                 ),

@@ -1,30 +1,32 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:mathiz/main.dart';
+import 'package:mathiz/screens/home/home_screen.dart';
+import 'package:mathiz/widgets/app_header.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MathizApp());
+  testWidgets('AppHeader renders the expected chrome', (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: AppHeader(title: 'Mathiz'),
+        ),
+      ),
+    );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    expect(find.text('Mathiz'), findsWidgets);
+    expect(find.byIcon(Icons.menu), findsOneWidget);
+    expect(find.byIcon(Icons.account_circle_outlined), findsOneWidget);
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  testWidgets('HomeScreen renders the dashboard shell', (tester) async {
+    await tester.pumpWidget(const MaterialApp(home: HomeScreen()));
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('Ferramentas Matemáticas'), findsOneWidget);
+    expect(find.text('Selecione uma ferramenta para começar.'), findsOneWidget);
+    expect(find.text('Matrizes'), findsOneWidget);
+    expect(find.text('Tabela Verdade'), findsOneWidget);
+    expect(find.byIcon(Icons.grid_on), findsWidgets);
+    expect(find.byIcon(Icons.rule), findsWidgets);
   });
 }

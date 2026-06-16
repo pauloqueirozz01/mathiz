@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mathiz/core/theme/app_colors.dart';
 
 import 'app_typography.dart';
 

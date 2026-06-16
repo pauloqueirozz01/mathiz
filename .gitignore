@@ -12,6 +12,27 @@
 .swiftpm/
 migrate_working_dir/
 
+# AI assistants and agent tooling
+.codex/
+.cursor/
+.claude/
+.ai/
+.github/copilot/
+.prompts/
+.instructions/
+.memory/
+.agents/
+.llm/
+.ai-cache/
+.cursor-cache/
+.codex-cache/
+AGENTS.md
+CLAUDE.md
+CURSOR.md
+COPILOT.md
+PROMPTS.md
+MEMORY.md
+
 # IntelliJ related
 *.iml
 *.ipr

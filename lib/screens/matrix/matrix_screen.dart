@@ -188,8 +188,6 @@ class _MatrixScreenState extends State<MatrixScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
 
             children: [
-              const AppHeader(),
-
               const SizedBox(height: AppSpacing.xl),
 
               const MatrixHeaderSection(),

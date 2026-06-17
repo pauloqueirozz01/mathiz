@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mathiz/models/history_activity.dart';
+import 'package:mathiz/widgets/academic_card.dart';
 
 class LastResultSection extends StatelessWidget {
   final HistoryActivity activity;
@@ -8,7 +9,7 @@ class LastResultSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return AcademicCard(
       child: Padding(
         padding: const EdgeInsets.all(16),
 

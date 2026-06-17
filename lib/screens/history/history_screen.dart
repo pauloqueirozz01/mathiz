@@ -6,6 +6,7 @@ import 'package:mathiz/services/history_service.dart';
 import 'package:mathiz/screens/history/widgets/history_card.dart';
 import 'package:mathiz/screens/history/widgets/history_empty_state.dart';
 import 'package:mathiz/screens/history/widgets/last_result_section.dart';
+import 'package:mathiz/widgets/academic_card.dart';
 
 import 'package:mathiz/widgets/app_bottom_navigation.dart';
 
@@ -111,7 +112,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
   /// Card do último resultado
   Widget _buildLastResultSection() {
-    return Card(
+    return AcademicCard(
       child: Padding(
         padding: const EdgeInsets.all(16),
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:mathiz/core/constants/app_spacing.dart';
+import 'package:mathiz/widgets/academic_card.dart';
 
 class MatrixActionsCard extends StatelessWidget {
   final String selectedOperation;
@@ -18,7 +19,7 @@ class MatrixActionsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return AcademicCard(
       child: Padding(
         padding: const EdgeInsets.all(AppSpacing.md),
 

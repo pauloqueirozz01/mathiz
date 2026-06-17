@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mathiz/models/history_activity.dart';
+import 'package:mathiz/widgets/academic_card.dart';
 
 class HistoryCard extends StatelessWidget {
   final HistoryActivity activity;
@@ -16,9 +17,7 @@ class HistoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8),
-
+    return AcademicCard(
       child: InkWell(
         onTap: onTap,
 

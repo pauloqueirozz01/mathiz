@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MatrixGridWidget extends StatelessWidget {
   final List<List<double>> matrix;
@@ -40,7 +41,12 @@ class MatrixGridWidget extends StatelessWidget {
 
                 keyboardType: const TextInputType.numberWithOptions(
                   decimal: true,
+                  signed: true,
                 ),
+
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'[-0-9.]')),
+                ],
 
                 textAlign: TextAlign.center,
 
@@ -50,6 +56,11 @@ class MatrixGridWidget extends StatelessWidget {
                 ),
 
                 onChanged: (value) {
+                  if (value.trim().isEmpty) {
+                    onValueChanged(rowIndex, colIndex, 0);
+                    return;
+                  }
+
                   final parsed = double.tryParse(value);
 
                   if (parsed == null) return;

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mathiz/core/constants/app_spacing.dart';
 import 'package:mathiz/core/theme/app_text_styles.dart';
 import 'package:mathiz/core/theme/app_colors.dart';
+import 'package:mathiz/widgets/academic_card.dart';
 
 class MatrixInputCard extends StatelessWidget {
   final String title;
@@ -12,7 +13,7 @@ class MatrixInputCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return AcademicCard(
       child: Padding(
         padding: const EdgeInsets.all(AppSpacing.md),
         child: Column(

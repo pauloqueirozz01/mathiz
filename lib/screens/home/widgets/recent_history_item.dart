@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:mathiz/models/history_activity.dart';
+import 'package:mathiz/widgets/academic_card.dart';
 
 class RecentHistoryItem extends StatelessWidget {
   final HistoryActivity activity;
@@ -9,7 +10,7 @@ class RecentHistoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return AcademicCard(
       child: ListTile(
         leading: CircleAvatar(
           child: Icon(

@@ -32,11 +32,9 @@ class MatrixGridWidget extends StatelessWidget {
               margin: const EdgeInsets.all(4),
 
               child: TextFormField(
-                key: ValueKey(
-                  "${rowIndex}_${colIndex}_${matrix[rowIndex][colIndex]}",
-                ),
-
-                initialValue: matrix[rowIndex][colIndex].toString(),
+                initialValue: matrix[rowIndex][colIndex] == 0
+                    ? ''
+                    : matrix[rowIndex][colIndex].toString(),
 
                 readOnly: readOnly,
 
@@ -52,11 +50,11 @@ class MatrixGridWidget extends StatelessWidget {
                 ),
 
                 onChanged: (value) {
-                  onValueChanged(
-                    rowIndex,
-                    colIndex,
-                    double.tryParse(value) ?? 0,
-                  );
+                  final parsed = double.tryParse(value);
+
+                  if (parsed == null) return;
+
+                  onValueChanged(rowIndex, colIndex, parsed);
                 },
               ),
             );

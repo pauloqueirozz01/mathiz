@@ -21,12 +21,14 @@ class RecentHistoryItem extends StatelessWidget {
 
         subtitle: Text(activity.description),
 
-        trailing: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-
-          child: Text(activity.result),
+        trailing: SizedBox(
+          width: 80,
+          child: Text(
+            activity.result,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.end,
+          ),
         ),
       ),
     );

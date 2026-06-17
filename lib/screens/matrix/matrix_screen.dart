@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
+
 import 'package:mathiz/core/theme/app_text_styles.dart';
+import 'package:mathiz/core/constants/app_spacing.dart';
+
 import 'package:mathiz/models/matrix_history.dart';
 import 'package:mathiz/models/history_activity.dart';
+
 import 'package:mathiz/screens/matrix/widgets/matrix_configuration_card.dart';
 import 'package:mathiz/screens/matrix/widgets/matrix_grid_widget.dart';
+
 import 'package:mathiz/services/matrix_service.dart';
 import 'package:mathiz/services/history_service.dart';
+
 import "package:mathiz/widgets/app_bottom_navigation.dart";
+import 'package:mathiz/widgets/app_header.dart';
+
+import "package:mathiz/screens/matrix/widgets/matrix_input_card.dart";
+import "package:mathiz/screens/matrix/widgets/matrix_result_card.dart";
+import "package:mathiz/screens/matrix/widgets/matrix_dimension_card.dart";
+import "package:mathiz/screens/matrix/widgets/matrix_actions_card.dart";
+import "package:mathiz/screens/matrix/widgets/matrix_header_section.dart";
 
 class MatrixScreen extends StatefulWidget {
   const MatrixScreen({super.key});
@@ -87,6 +100,18 @@ class _MatrixScreenState extends State<MatrixScreen> {
     String activityType = "";
     String activityTitle = "";
 
+    if (selectedOperation == "Multiplicação" && rows != cols) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            "No MVP a multiplicação suporta apenas matrizes quadradas.",
+          ),
+        ),
+      );
+
+      return;
+    }
+
     setState(() {
       switch (selectedOperation) {
         case "Soma":
@@ -155,60 +180,91 @@ class _MatrixScreenState extends State<MatrixScreen> {
     return Scaffold(
       bottomNavigationBar: const AppBottomNavigation(currentIndex: 1),
 
-      appBar: AppBar(title: const Text("Mathiz")),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(AppSpacing.lg),
 
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
 
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const AppHeader(),
 
-          children: [
-            Text("Operações com matrizes", style: AppTextStyles.headlineXL),
+              const SizedBox(height: AppSpacing.xl),
 
-            const SizedBox(height: 24),
+              const MatrixHeaderSection(),
 
-            /// Card de configuração
-            MatrixConfigurationCard(
-              rows: rows,
-              cols: cols,
-              onRowsChanged: (value) {
-                setState(() {
-                  rows = value;
-                });
-              },
+              const SizedBox(height: AppSpacing.xl),
 
-              onColsChanged: (value) {
-                setState(() {
-                  cols = value;
-                });
-              },
-              selectedOperation: selectedOperation,
+              MatrixDimensionCard(
+                rows: rows,
+                cols: cols,
 
-              onResize: generateMatrices,
+                onRowsChanged: (value) {
+                  setState(() => rows = value);
+                },
 
-              onOperationChanged: (operation) {
-                setState(() {
-                  selectedOperation = operation;
-                });
-              },
-            ),
+                onColsChanged: (value) {
+                  setState(() => cols = value);
+                },
 
-            const SizedBox(height: 24),
+                onGenerate: generateMatrices,
+              ),
 
-            /// Matrizes
-            _buildMatricesArea(),
+              const SizedBox(height: AppSpacing.lg),
 
-            const SizedBox(height: 24),
+              MatrixInputCard(
+                title: "Matriz A",
 
-            /// Botões
-            _buildActionButtons(),
+                child: MatrixGridWidget(
+                  matrix: matrixA,
 
-            const SizedBox(height: 24),
+                  onValueChanged: (row, col, value) {
+                    setState(() {
+                      matrixA[row][col] = value;
+                    });
+                  },
+                ),
+              ),
 
-            /// Resultado
-            _buildResultMatrix(),
-          ],
+              const SizedBox(height: AppSpacing.lg),
+
+              MatrixInputCard(
+                title: "Matriz B",
+
+                child: MatrixGridWidget(
+                  matrix: matrixB,
+
+                  onValueChanged: (row, col, value) {
+                    setState(() {
+                      matrixB[row][col] = value;
+                    });
+                  },
+                ),
+              ),
+
+              const SizedBox(height: AppSpacing.lg),
+
+              MatrixActionsCard(
+                selectedOperation: selectedOperation,
+
+                onOperationChanged: (value) {
+                  setState(() {
+                    selectedOperation = value;
+                  });
+                },
+
+                onCalculate: calculateResult,
+              ),
+
+              const SizedBox(height: AppSpacing.lg),
+
+              MatrixResultCard(
+                matrix: resultMatrix,
+                operation: selectedOperation,
+              ),
+            ],
+          ),
         ),
       ),
     );

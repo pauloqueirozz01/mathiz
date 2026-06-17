@@ -1,192 +1,288 @@
-# Mathiz — Educação & Lógica
+# Mathiz — Matemática & Lógica
 
-Aplicação mobile desenvolvida em Flutter com foco acadêmico para auxiliar estudantes nas disciplinas de **Matemática Aplicada** e **Lógica Matemática**, componentes curriculares do curso de **Sistemas de Informação | UNI7**.
+Aplicação mobile desenvolvida em Flutter para auxiliar estudantes em disciplinas de Matemática Aplicada e Lógica Matemática.
 
-O projeto busca unir:
-
-- organização arquitetural;
-- experiência visual moderna;
-- componentização;
-- reaproveitamento de código;
-- performance;
-- e aprendizado prático de desenvolvimento mobile.
+O projeto oferece ferramentas acadêmicas voltadas para resolução de problemas, visualização de conceitos matemáticos e registro de atividades realizadas pelo usuário.
 
 ---
 
-# Objetivo do Projeto
+# Funcionalidades
 
-O **Mathiz** foi criado como um ambiente de apoio acadêmico voltado para:
+## Operações com Matrizes
 
-- resolução de cálculos;
-- estudos de lógica;
-- organização matemática;
-- experimentação visual;
-- e reforço dos conceitos aprendidos em sala de aula.
+O módulo de matrizes permite:
 
-Além da proposta educacional, o projeto também serve como laboratório prático de:
+* Soma de matrizes
+* Subtração de matrizes
+* Multiplicação de matrizes
+* Matrizes de 1x1 até 3x3
+* Validação automática das operações
+* Visualização do resultado em tempo real
+* Registro automático no histórico
 
-- Flutter;
-- Dart;
-- arquitetura frontend;
-- design system;
-- componentização;
-- e organização de aplicações escaláveis.
+---
+
+## Tabela-Verdade
+
+O módulo de lógica proposicional permite:
+
+* Construção de proposições lógicas
+* Geração automática de tabelas-verdade
+* Classificação de expressões em:
+
+  * Tautologia
+  * Contradição
+  * Contingência
+* Suporte a operadores:
+
+  * ¬ (Negação)
+  * ∧ (Conjunção)
+  * ∨ (Disjunção)
+  * → (Implicação)
+  * ↔ (Bicondicional)
+* Avaliação recursiva de expressões compostas
+* Persistência automática no histórico
+
+Exemplos válidos:
+
+```text
+P ∧ Q
+
+¬P
+
+(P ∧ Q) → R
+
+(P ↔ Q)
+
+(P ∨ Q) ∧ ¬R
+```
+
+---
+
+## Histórico de Atividades
+
+Todas as operações executadas são armazenadas localmente.
+
+O histórico registra:
+
+* tipo da operação;
+* categoria;
+* resultado;
+* data de execução;
+* metadados necessários para futura expansão.
 
 ---
 
 # Tecnologias Utilizadas
 
-- Flutter
-- Dart
-- Material Design 3
-- Local Storage
-- Design System próprio
-- Arquitetura Modular
+* Flutter
+* Dart
+* Material Design
+* Hive (Persistência Local)
+* Arquitetura Modular
+* Design System Próprio
 
 ---
 
-# Estrutura Arquitetural
+# Arquitetura
 
-O projeto utiliza uma abordagem modular para manter:
-
-- escalabilidade;
-- separação de responsabilidades;
-- manutenção simplificada;
-- e maior reaproveitamento de código.
-
-## Estrutura Base
+O projeto segue uma organização modular baseada em separação de responsabilidades.
 
 ```text
 lib/
+
 ├── core/
 │   ├── constants/
+│   ├── navigation/
 │   ├── theme/
-│   ├── widgets/
 │
-├── screens/
-│   ├── splash/
-│   ├── home/
-│   ├── calculator/
+├── models/
 │
 ├── services/
-├── models/
-├── repositories/
 │
-├── main.dart
+├── screens/
+│   ├── home/
+│   ├── matrix/
+│   ├── logic/
+│   ├── history/
+│
+├── widgets/
+│
+└── main.dart
 ```
 
-## Arquitetura Modular
+---
 
-A arquitetura modular foi adotada para evitar:
+# Principais Serviços
 
-- acoplamento excessivo;
-- código duplicado;
-- arquivos gigantes;
-- responsabilidades misturadas.
-  Cada módulo possui responsabilidade própria, facilitando:
-- testes;
-- manutenção;
-- escalabilidade;
-- reutilização de componentes.
+## MatrixService
 
-## Design System
+Responsável pelas regras matemáticas de matrizes:
 
-O projeto utiliza um Design System próprio para padronização visual da aplicação.
+* soma;
+* subtração;
+* multiplicação;
+* validações dimensionais.
 
-Isso inclui:
+---
 
-- paleta de cores;
-- escala tipográfica;
-- espaçamentos;
-- pesos de fonte;
-- componentes reutilizáveis;
-- estilos globais.
+## TruthTableService
 
-## Benefícios
+Responsável pela geração das combinações lógicas para construção da tabela-verdade.
 
-- consistência visual;
-- manutenção simplificada;
-- código mais limpo;
-- redução de “magic numbers”;
-- facilidade de evolução visual do app.
+---
 
-## Componentização
+## LogicParserService
 
-Todo elemento reutilizável da interface será transformado em componente.
+Responsável por:
 
-Exemplos:
+* extração de variáveis;
+* validação de expressões;
+* análise sintática inicial.
 
-- botões;
-- campos de input;
-- loaders;
-- cards;
-- barras de progresso;
-- títulos;
-- widgets matemáticos.
+---
 
-Isso reduz:
+## LogicEvaluatorService
 
-- repetição;
-- inconsistência visual;
-- complexidade do código.
+Responsável por interpretar e avaliar expressões lógicas recursivamente.
 
-## Persistência de Dados
+Suporta:
 
-O aplicativo utilizará banco de dados local para armazenar:
+```text
+¬
+∧
+∨
+→
+↔
+()
+```
 
-- cálculos realizados;
-- histórico do usuário;
-- operações recentes;
-- preferências da aplicação.
+---
 
-Os dados ficarão armazenados localmente no dispositivo do usuário, permitindo:
+## HistoryService
 
-- acesso rápido;
-- funcionamento offline;
-- melhor experiência de uso.
+Camada responsável por persistir e recuperar atividades do usuário.
 
-## Objetivos Técnicos
+---
 
-O projeto também tem como foco aprofundar conhecimentos em:
+# Design System
 
-- Flutter Architecture
-- Clean Code
-- UI/UX
-- Navegação entre telas
-- Gerenciamento de estado
-- Persistência local
-- Componentização
-- Escalabilidade frontend
-- Estruturação de Design Systems
+O projeto utiliza um Design System próprio baseado em:
 
-## Objetivos Acadêmicos
+* AppColors
+* AppTextStyles
+* AppSpacing
+* AppSizes
 
-- Aplicar conceitos matemáticos em aplicações reais;
-- Criar ferramentas de apoio educacional;
-- Relacionar lógica computacional e lógica matemática;
-- Desenvolver soluções voltadas ao ambiente universitário.
+Objetivos:
 
-## Status do Projeto
+* eliminar magic numbers;
+* manter consistência visual;
+* facilitar manutenção;
+* acelerar criação de novas telas.
 
-🚧 Em desenvolvimento
-Atualmente sendo desenvolvidos:
+---
 
-- Splash Screen,
-- Estrutura arquitetural,
-- Design System,
-- Navegação inicial,
-  -Componentes reutilizáveis.
+# Como Executar o Projeto
 
-## Autor
+## Pré-requisitos
 
-- André Lins,
-- Ícaro Araujo,
-- Micael Studart,
-- Paulo Queiroz,
-- Ronaldo,
+Instalar:
 
-Alunos do Curso de Sistemas de Informação — UNI7
+* Flutter SDK
+* Dart SDK
+* Android Studio ou VS Code
+* Xcode (macOS para iOS)
 
-## Licença
+Verifique a instalação:
+
+```bash
+flutter doctor
+```
+
+---
+
+## Clonar o Projeto
+
+```bash
+git clone https://github.com/SEU-USUARIO/mathiz.git
+
+cd mathiz
+```
+
+---
+
+## Instalar Dependências
+
+```bash
+flutter pub get
+```
+
+---
+
+## Executar
+
+```bash
+flutter run
+```
+
+---
+
+## Gerar Build Android
+
+```bash
+flutter build apk
+```
+
+---
+
+## Gerar Build iOS
+
+```bash
+flutter build ios
+```
+
+---
+
+# Roadmap
+
+Próximas evoluções planejadas:
+
+* Determinante
+* Matriz Inversa
+* Transposta
+* Sistema Linear
+* Exportação de histórico
+* Favoritos
+* Tema escuro
+* Mais operadores lógicos
+* Simplificação de expressões
+
+---
+
+# Objetivos Acadêmicos
+
+* Aplicar conceitos matemáticos em software real;
+* Desenvolver raciocínio lógico;
+* Explorar arquitetura Flutter;
+* Aprender componentização;
+* Trabalhar persistência local;
+* Construir aplicações escaláveis.
+
+---
+
+# Equipe
+
+* André Lins
+* Ícaro Araújo
+* Micael Studart
+* Paulo Queiroz
+* Ronaldo Filho
+
+Curso de Sistemas de Informação — UNI7
+
+---
+
+# Licença
 
 Projeto acadêmico desenvolvido para fins educacionais.
